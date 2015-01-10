@@ -164,7 +164,7 @@ const (
 
 函数列表：
 
-1. After 
+1  After
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -177,7 +177,7 @@ func After(d Duration) <-chan Time
 ```
 
 
-2. Sleep
+2  Sleep
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -210,7 +210,7 @@ func main(){
 
 ```
 
-3. Tick
+3  Tick
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -241,7 +241,7 @@ func main(){
 
 ```
 
-4. ParseDuration
+4  ParseDuration
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -258,7 +258,7 @@ func ParseDuration(s string)(Duration, error)
 ParseDuration 用于解析时间字符串。一个时间字符串可能由十进制数值，可选分数和单位后缀构成, 比如“300ms”，“-15h”或“2h45m”等。有效的时间单位是 "ns"（纳秒）, "us"（微秒） (或者 "µs"), "ms"（毫秒）, "s"（秒）, "m"（分）, "h"（时）.
 
 
-5. Since
+5  Since
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -275,7 +275,7 @@ func Since(t Time) Duration
 
 
 
-6. Hours
+6  Hours
 
 | 函数名  |接受者|参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -290,7 +290,7 @@ func (d Duration) Hours() float64
 函数说明
 Hours 作为一个浮点数小时返回时间。
 
-7. Minutes
+7  Minutes
 
 | 函数名  |接受者|参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -306,7 +306,7 @@ func (d Duration) Minutes() float64
 函数说明
 Minutes 作为一个浮点数分钟返回时间。
 
-8. NanoSeconds
+8  NanoSeconds
 
 | 函数名  |接受者|参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -321,7 +321,7 @@ func (d Duration) NanoSeconds() float64
 函数说明
 NanoSeconds 作为一个浮点数纳秒返回时间。
 
-9. Seconds
+9  Seconds
 
 | 函数名  | 接受者 |参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -336,7 +336,7 @@ func (d Duration) Seconds() float64
 函数说明
 Seconds 作为一个浮点数秒返回时间。
 
-10. String
+10  String
 
 | 函数名  | 接受者 | 参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -353,7 +353,7 @@ func (d Duration) String() string
 String 函数将Duration类型的时间以字符串类型返回，并将时间表示为“72h3m0.5s”格式。前导零单位略（0时0分1秒，则表示为1s）。作为一个特殊的情况下，持续时间少于一秒的格式使用一个较小的单位（毫，微，或纳秒）以确保开头的数字是非零。零时间格式标示为0，无单位。
 
 
-11. FixedZone
+11  FixedZone
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -371,7 +371,7 @@ func FixedZone(name string, offset int) *Location
 传入时区名,以及与UTC0的时间偏差. 返回指向Location结构体的指针 *Location
 
 
-12. LoadLocation
+12  LoadLocation
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
@@ -390,7 +390,7 @@ func LoadLocation(name string) *Location
 假如name是""或者"UTC",函数返回UTC, 假如name是"Local", 函数返回Local,否则，这个名字是对应于在IANA时区数据库文件的位置名称，如"America/New_York"。
 LoadLocation函数所需要的时区数据库不一定在所有的系统中都存在，特别是非类Unix系统，可以在$GOROOT/lib/time/zoneinfo.zip.找到
 
-13. String
+13  String
 
 | 函数名  |接受者| 参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -408,7 +408,7 @@ func (l *Location) String() string
 将本地时区信息以字符串形式返回
 
 
-13. String
+14  String
 
 | 函数名  | 接受者 | 参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -426,7 +426,7 @@ func (m Month) String() string
 返回月份的英文名称，需要中文的可以自己写类似StringZh函数进行映射
 
 
-13. NewTicker
+15  NewTicker
 
 | 函数名  | 接受者 | 参数 | 返回值  | 功能  |
 |---|---|---|---|---|
@@ -443,7 +443,7 @@ func NewTicker(d Duration) *Ticker
 返回一个包含一个只读chan成员的新的Ticker, 传入的Duration必须大于0，否则Ticker将发生异常错误。
 
 
-13. Stop
+16  Stop
 
 | 函数名  | 接受者 | 参数 | 返回值  | 功能  |
 |---|---|---|---|---|
