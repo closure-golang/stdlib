@@ -26,8 +26,12 @@ const (
 
 函数：
 
-
+```
 func After(d Duration) <-chan Time
+```
+| 函数名  |参数 | 返回值  | 功能  |
+|---|---|---|---|
+|After|Duration|<-chan Time | 暂停，等待执行 |
 
 函数名： After
 参数 ：  Duration 类型               // type Duration int64
