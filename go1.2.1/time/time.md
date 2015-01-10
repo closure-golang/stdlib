@@ -24,21 +24,37 @@ const (
 
 ```
 
-函数：
-
+函数列表：
+1. After 
 ```
 func After(d Duration) <-chan Time
 ```
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
-|After|Duration|<-chan Time | 暂停，等待执行 |
+|After|Duration 类型|<-chan（只读chan） Time | 等待，并返回等待结束后的时间 |
 
-函数名： After
-参数 ：  Duration 类型               // type Duration int64
-返回值： <-chan（只读chan）Time
-功能：等待，并返回等待结束后的时间
+示例：
 
+``` golang
+package main
 
+import(
+   "fmt"
+   "time"
+)
+
+func main(){
+   select {
+    case m := <-c:
+        handle(m)
+    case <-time.After(5 * time.Minute):
+        fmt.Println("timed out")
+    }
+}
+
+```
+
+2. Sleep
 
 func Sleep(d Duration)
 
