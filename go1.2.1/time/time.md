@@ -176,39 +176,22 @@ const (
 func After(d Duration) <-chan Time
 ```
 
+函数说明 : 程序等待d，并返回等待结束后的时间
 
 2  Sleep
 
 | 函数名  |参数 | 返回值  | 功能  |
 |---|---|---|---|
-|Sleep|Duration 类型|无| 等待，并返回等待结束后的时间 |
+|Sleep|Duration 类型|无| 等待 |
 
 函数定义
 
 ```
 func Sleep(d Duration)
-```
-
-示例
 
 ```
-package main
 
-import(
-  "time"
-  "fmt"
-)
-
-func main(){
-  t1 := time.Now().Second();
-  fmt.Println(t1)   //获取输出当前时间
-  time.Sleep(100 * time.Millisecond)
-  t2 := time.Now().Second()
-  fmt.Println(t2)
-  fmt.Println(t1-t2)
-}
-
-```
+函数说明 : 程序等待d
 
 3  Tick
 
@@ -222,24 +205,6 @@ func main(){
 func Tick(d Duration) <-chan Time
 ```
 
-示例
-
-```
-package main
-
-import(
-  "time"
-  "fmt"
-)
-
-func main(){
-    c := time.Tick(1 * time.Minute)
-    for now := range c {
-        fmt.Printf("%v %s\n", now, statusUpdate())
-    }
-}
-
-```
 
 4  ParseDuration
 
