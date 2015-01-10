@@ -69,7 +69,6 @@ const (
 
 
 // 可以直接使用这些常量作为基准量，比如传递一个参数为10秒，可以使用 10 * time.Second 表示
-```
 
 
 type Location struct {
