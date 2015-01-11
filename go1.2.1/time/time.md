@@ -457,3 +457,243 @@ func (t *Ticker) Stop()
 ```
 Stop 函数将关闭ticker的通道，函数执行后,将不会有消息被发送。但是为了防止已经发生的从Stop函数并不会关闭Ticker内部的channel进行的读操作发生错误，Stop函数并不会关闭Ticker内部的channel。
 
+
+17  Date
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|Date| 无 | int,month,int,*Location | Time | 返回Time对象 |
+
+函数定义
+
+```
+func Date(year int, month Month, day, hour, min, sec, nsec int, loc *Location) Time
+
+```
+
+函数说明
+
+Date 函数根据提供的年，月，日，时，分，秒， 时区偏差量， UTC/Local, 返回一个包含可以被导出或者访问属性的结构体Time对象。
+返回的时间格式为YYYY-MM-DD hh:mm:ss + nsec nanoseconds, 时区选择（***）， 如果loc是空对象nil，则Date函会报错。
+
+示例
+
+```
+package main
+
+import(
+  "time"
+  "fmt"
+)
+
+func main(){
+
+  t := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
+  
+  fmt.Printf("Go launched at %s\n", t.Local())
+  
+}
+
+
+程序运行结果:
+
+Go launched at 2009-11-10 15:00:00 -0800 PST
+
+```
+
+18 Now
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|Now| 无 | 空 | Time | 获取当前时间，返回Time对象 |
+
+函数定义
+
+```
+func Now() Time
+
+```
+
+函数说明
+
+Now 函数返回当前的本地时间
+
+示例
+
+```
+
+package main
+
+import(
+  "fmt"
+  "time"
+)
+
+func main(){
+
+  t:= t.Now()
+ 
+  fmt.Println(t.String())
+ 
+}
+
+
+// 程序运行结果
+2015-01-11 14:57:51.536225133 +0800 CST
+
+```
+
+19 Parse
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|Parse| 无 | layout, value | Time, error | 将时间按照指定的字符串形式进行格式化，并返回 |
+
+函数定义
+
+```   
+func Parse(layout, value string) (Time, error)
+
+```
+
+函数说明
+
+Parse 函数 解析一个格式化字符串并返回它所代表的时间值。布局定义的格式显示参考时间。
+
+示例
+
+```
+package main
+
+import(
+  "time"
+  "fmt"
+)
+
+func main(){
+   
+   const longForm = "Jan 2, 2006 at 3:04pm (MST)"
+   t, _ := time.Parse(longForm, "Feb 3, 2013 at 7:54pm (PST)")
+   fmt.Println(t)
+   
+
+   const shortForm = "2006-Jan-02"
+   t, _ = time.Parse(shortForm, "2013-Feb-03")
+   fmt.Println(t)
+
+}
+
+// 程序运行结果
+2013-02-03 19:54:00 +0000 PST
+2013-02-03 00:00:00 +0000 UTC
+
+
+```
+
+20 ParseInLocation
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|ParseInLocation| 无 | layout, value， loc | Time, error | 将时间按照指定的字符串形式进行格式化，并返回 |
+
+函数定义
+
+```  
+func ParseInLocation(layout, value string, loc *Location) (Time, error)
+
+```
+
+函数说明
+
+ParseInLocation 与 Parse 类似，但是两个函数有两个不同点。
+  - 1 ：当时区信息缺失的时候 Parse 返回一个 UTC 的 Time, ParseInLocation 则返回一个本地时间 Time ，
+  - 2 ：当给定一个时区偏移量或者时区缩写，Parse 将试图解析本地位置， ParseInLocation 使用给定的位置 。
+
+
+示例
+
+```
+package main
+
+import(
+  "fmt"
+  "time"
+)
+
+func main(){
+
+  loc, _ := time.LoadLocation("Europe/Berlin")
+    
+  const longForm = "Jan 2, 2006 at 3:04pm (MST)"     
+  
+  t, _ := time.ParseInLocation(longForm, "Jul 9, 2012 at 5:02am (CEST)", loc)
+  
+  fmt.Println(t)
+ 
+  const shortForm = "2006-Jan-02"                              //只显示年，月，日
+  
+  t, _ = time.ParseInLocation(shortForm, "2012-Jul-09", loc)
+  
+  fmt.Println(t)
+  
+}
+
+// 程序运行结果
+
+2012-07-09 05:02:00 +0200 CEST
+2012-07-09 00:00:00 +0200 CEST
+
+```
+
+21 Unix
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|Unix| 无 | sec, nsec | Time | 提供 **秒**, **纳秒**时间， 并返回一个Unix格式的时间 Time |
+
+函数定义
+
+```  
+func Unix(sec int64, nsec int64) Time
+
+```
+
+函数说明
+
+Unix 函数返回当地时间对应于给定的UNIX时间，自1970年1月1日UTC秒秒和纳秒纳秒。它是有效的通过纳秒范围以外的[ 0，999999999 ]。
+
+
+22 Add
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|Add| Time | Duration | Time | 时间相加，返回新的时间 |
+
+函数定义
+
+```  
+func (t Time) Add(d Duration) Time
+
+```
+
+函数说明
+
+Add 返回相加后的 Time。
+
+
+23 AddDate
+
+| 函数名  | 接受者 | 参数 | 返回值  | 功能  |
+|---|---|---|---|---|
+|AddDate| Time |years,months,days | Time | 时间相加，返回新的时间 |
+
+函数定义
+
+```  
+func (t Time) AddDate(years int, months int, days int) Time
+
+```
+ 
+函数说明
+
+AddDate 函数返回相应的增加 年，月，天的时间， 例如，AddDate（-1，2，3）, 此时的 t 是 2011年1月1日， 则返回 2010年3月4日返回。
